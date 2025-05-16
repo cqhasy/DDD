@@ -1,0 +1,76 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "contact": {}
+    },
+    "paths": {
+        "/items": {
+            "post": {
+                "description": "This endpoint allows you to add a new item to the inventory.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "items"
+                ],
+                "summary": "Add a new item",
+                "parameters": [
+                    {
+                        "description": "Item details",
+                        "name": "item",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/entity.Item"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successfully added the item",
+                        "schema": {
+                            "$ref": "#/definitions/model.Response"
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input data",
+                        "schema": {
+                            "$ref": "#/definitions/model.Response"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "entity.Item": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "num": {
+                    "type": "integer"
+                },
+                "price": {
+                    "type": "integer"
+                }
+            }
+        },
+        "model.Response": {
+            "type": "object",
+            "properties": {
+                "data": {},
+                "msg": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

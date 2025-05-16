@@ -1,0 +1,48 @@
+definitions:
+  entity.Item:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      num:
+        type: integer
+      price:
+        type: integer
+    type: object
+  model.Response:
+    properties:
+      data: {}
+      msg:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /items:
+    post:
+      consumes:
+      - application/json
+      description: This endpoint allows you to add a new item to the inventory.
+      parameters:
+      - description: Item details
+        in: body
+        name: item
+        required: true
+        schema:
+          $ref: '#/definitions/entity.Item'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: Successfully added the item
+          schema:
+            $ref: '#/definitions/model.Response'
+        "400":
+          description: Invalid input data
+          schema:
+            $ref: '#/definitions/model.Response'
+      summary: Add a new item
+      tags:
+      - items
+swagger: "2.0"
